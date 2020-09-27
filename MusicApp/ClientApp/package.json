@@ -5,7 +5,7 @@
   "author": "Egor Bakanov",
   "scripts": {
     "ng": "ng",
-    "start": "echo hello && ng serve",
+    "start": "echo starting && ng serve",
     "build": "ng build"
   },
   "dependencies": {
