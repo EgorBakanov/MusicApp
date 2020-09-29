@@ -1,0 +1,27 @@
+﻿<div class="card p-2">
+  <div class="row mb-2">
+    <h3 class="col-9 pt-1">Library</h3>
+    <div class="col-2 offset-1 pt-2">
+      <button class="btn btn-sm btn-primary float-right">
+        <i class="fas fa-plus text-light"></i>
+      </button>
+    </div>
+  </div>
+  <div class="list-group">
+    <div *ngFor="let m of library">
+      <div
+        class="list-group-item list-group-item-action"
+      >
+        {{ m.name }}
+      </div>
+      <div class="pl-3">
+        <div
+          *ngFor="let a of m.albums"
+          class="list-group-item list-group-item-action list-group-item-secondary"
+        >
+          {{ a.name }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

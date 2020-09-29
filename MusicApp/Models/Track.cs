@@ -11,7 +11,7 @@ namespace MusicApp.Models
         public string Duration { get; set; }
         public bool IsFavorite { get; set; }
         public bool IsListened { get; set; }
-        [Range(0,10)]
+        [Range(-1, 1)]
         public int Rating { get; set; }
 
         public int AlbumId { get; set; }
