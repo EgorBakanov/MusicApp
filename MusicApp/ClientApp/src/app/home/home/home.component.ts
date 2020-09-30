@@ -32,4 +32,8 @@ export class HomeComponent implements OnInit {
       this.tracks = t;
     });
   }
+
+  onSelectionChanged(selection: { musician?: number; album?: number }) {
+    this.loadTracks(selection.musician, selection.album);
+  }
 }

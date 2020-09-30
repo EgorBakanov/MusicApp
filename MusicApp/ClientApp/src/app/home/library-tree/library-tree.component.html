@@ -7,54 +7,27 @@
       <add-button (onAddClick)="addMusician()" class="float-right"></add-button>
     </div>
   </div>
-
   <div class="list-group">
-    <div *ngFor="let m of library">
-      <button
-        type="button"
-        class="list-group-item list-group-item-action py-1"
-        (click)="selectMusician(m.id)"
-      >
-        <div class="row">
-          <div class="col-8 col-md-9 col-lg-10 text-truncate align-text-bottom">
-            {{ m.name }}
-          </div>
-          <div class="col-4 col-md-3 col-lg-2 pr-0">
-            <add-edit-delete-button
-              [click-stop-propagation]
-              class="float-right"
-              (onAddClick)="addAlbum(m.id)"
-              (onEditClick)="editMusician(m.id)"
-              (onDeleteClick)="deleteMusician(m.id)"
-            ></add-edit-delete-button>
-          </div>
-        </div>
-      </button>
-      <div class="pl-3">
-        <button
-          type="button"
-          *ngFor="let a of m.albums"
-          class="list-group-item list-group-item-action list-group-item-secondary py-1"
-          (click)="selectAlbum(a.id)"
-        >
-          <div class="row">
-            <div
-              class="col-7 col-sm-6 col-md-8 col-lg-9 col-xl-10 text-truncate align-text-bottom"
-            >
-              {{ a.name }}
-            </div>
-            <div class="col-5 col-sm-6 col-md-4 col-lg-3 col-xl-2 pr-0">
-              <add-edit-delete-button
-                [click-stop-propagation]
-                class="float-right"
-                (onAddClick)="addTrack(a.id)"
-                (onEditClick)="editAlbum(a.id)"
-                (onDeleteClick)="deleteAlbum(a.id)"
-              ></add-edit-delete-button>
-            </div>
-          </div>
-        </button>
-      </div>
-    </div>
+    <library-tree-item
+      *ngFor="let m of library"
+      [text]="m.name"
+      [isSelected]="currentMusician === m.id"
+      (onSelect)="selectMusician(m.id)"
+      (onEdit)="editMusician(m.id)"
+      (onDelete)="deleteMusician(m.id)"
+      (onAdd)="addAlbum(m.id)"
+      [level]="(1)"
+    >
+      <library-tree-item
+        *ngFor="let a of m.albums"
+        [text]="a.name"
+        [isSelected]="currentAlbum === a.id"
+        (onSelect)="selectAlbum(a.id)"
+        (onEdit)="editAlbum(a.id)"
+        (onDelete)="deleteAlbum(a.id)"
+        (onAdd)="addTrack(a.id)"
+        [level]="(2)"
+      ></library-tree-item>
+    </library-tree-item>
   </div>
 </div>

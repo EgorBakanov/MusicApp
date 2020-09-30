@@ -1,0 +1,33 @@
+﻿<button
+  type="button"
+  class="list-group-item list-group-item-action py-1"
+  [ngClass]="{ active: isSelected, 'list-group-item-secondary': level > 1 }"
+  (click)="select()"
+>
+  <div class="row">
+    <div
+      class="text-truncate align-text-bottom"
+      [ngClass]="{
+        'col-8 col-md-9 col-lg-10': level == 1,
+        'col-7 col-sm-6 col-md-8 col-lg-9 col-xl-10': level > 1
+      }"
+    >
+      {{ text }}
+    </div>
+    <div class="pr-0" [ngClass]="{
+        'col-4 col-md-3 col-lg-2': level == 1,
+        'col-5 col-sm-6 col-md-4 col-lg-3 col-xl-2': level > 1
+    }">
+      <add-edit-delete-button
+        click-stop-propagation
+        class="float-right"
+        (onAddClick)="add()"
+        (onEditClick)="edit()"
+        (onDeleteClick)="delete()"
+      ></add-edit-delete-button>
+    </div>
+  </div>
+</button>
+<div class="pl-3 list-group" *ngIf="isSelected">
+  <ng-content> </ng-content>
+</div>
