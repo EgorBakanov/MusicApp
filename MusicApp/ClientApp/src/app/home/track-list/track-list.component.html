@@ -1,1 +1,25 @@
-﻿<div>Track list...</div>
+﻿<div class="card p-2">
+  <h3 class="ml-2">Tracks</h3>
+
+  <div class="list-group mt-2">
+    <div
+      *ngFor="let t of tracks"
+      class="list-group-item list-group-item-action py-1"
+    >
+      <div class="row">
+        <div
+          class="col-8 col-sd-10 col-md-9 col-lg-10 text-truncate align-text-bottom"
+        >
+          {{ t.name }}
+        </div>
+        <div class="col-4 col-sd-2 col-md-3 col-lg-2 pr-0">
+          <edit-delete-button
+            class="float-right"
+            (onEditClick)="editTrack(t.id)"
+            (onDeleteClick)="deleteTrack(t.id)"
+          ></edit-delete-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

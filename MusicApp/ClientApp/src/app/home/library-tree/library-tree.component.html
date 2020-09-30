@@ -1,26 +1,59 @@
 ﻿<div class="card p-2">
   <div class="row mb-2">
-    <h3 class="col-9 pt-1">Library</h3>
+    <div class="col-9 pt-1">
+      <h3 class="ml-2">Library</h3>
+    </div>
     <div class="col-2 offset-1 pt-2">
-      <button class="btn btn-sm btn-primary float-right">
-        <i class="fas fa-plus text-light"></i>
-      </button>
+      <add-button (onAddClick)="addMusician()" class="float-right"></add-button>
     </div>
   </div>
+
   <div class="list-group">
     <div *ngFor="let m of library">
-      <div
-        class="list-group-item list-group-item-action"
+      <button
+        type="button"
+        class="list-group-item list-group-item-action py-1"
+        (click)="selectMusician(m.id)"
       >
-        {{ m.name }}
-      </div>
-      <div class="pl-3">
-        <div
-          *ngFor="let a of m.albums"
-          class="list-group-item list-group-item-action list-group-item-secondary"
-        >
-          {{ a.name }}
+        <div class="row">
+          <div class="col-8 col-md-9 col-lg-10 text-truncate align-text-bottom">
+            {{ m.name }}
+          </div>
+          <div class="col-4 col-md-3 col-lg-2 pr-0">
+            <add-edit-delete-button
+              [click-stop-propagation]
+              class="float-right"
+              (onAddClick)="addAlbum(m.id)"
+              (onEditClick)="editMusician(m.id)"
+              (onDeleteClick)="deleteMusician(m.id)"
+            ></add-edit-delete-button>
+          </div>
         </div>
+      </button>
+      <div class="pl-3">
+        <button
+          type="button"
+          *ngFor="let a of m.albums"
+          class="list-group-item list-group-item-action list-group-item-secondary py-1"
+          (click)="selectAlbum(a.id)"
+        >
+          <div class="row">
+            <div
+              class="col-7 col-sm-6 col-md-8 col-lg-9 col-xl-10 text-truncate align-text-bottom"
+            >
+              {{ a.name }}
+            </div>
+            <div class="col-5 col-sm-6 col-md-4 col-lg-3 col-xl-2 pr-0">
+              <add-edit-delete-button
+                [click-stop-propagation]
+                class="float-right"
+                (onAddClick)="addTrack(a.id)"
+                (onEditClick)="editAlbum(a.id)"
+                (onDeleteClick)="deleteAlbum(a.id)"
+              ></add-edit-delete-button>
+            </div>
+          </div>
+        </button>
       </div>
     </div>
   </div>
