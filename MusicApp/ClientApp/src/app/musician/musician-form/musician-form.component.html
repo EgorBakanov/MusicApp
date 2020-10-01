@@ -1,0 +1,38 @@
+﻿<form [formGroup]="form" novalidate>
+    <div class="form-group">
+        <label>Name</label>
+        <input class="form-control" name="name" formControlName="name" [(ngModel)]="musician.name" />
+         
+        <div class="alert alert-danger"
+            *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
+            Wrong name!
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Age</label>
+        <input type="number" class="form-control" name="age" formControlName="age" [(ngModel)]="musician.age" />
+         
+        <div class="alert alert-danger"
+            *ngIf="form.controls['age'].invalid && form.controls['age'].touched">
+            Wrong age!
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Genre</label>
+        <input class="form-control" name="genre" formControlName="genre" [(ngModel)]="musician.genre" />
+         
+        <div class="alert alert-danger"
+            *ngIf="form.controls['age'].invalid && form.controls['age'].touched">
+            Wrong genre!
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Career Start Year</label>
+        <input type="number" class="form-control" name="careerStartYear" formControlName="careerStartYear" [(ngModel)]="musician.careerStartYear" />
+         
+        <div class="alert alert-danger"
+            *ngIf="form.controls['age'].invalid && form.controls['age'].touched">
+            Wrong career start year!
+        </div>
+    </div>
+</form>

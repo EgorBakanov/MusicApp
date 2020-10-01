@@ -1,9 +1,12 @@
 ﻿import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
+import { FormsModule, FormBuilder, ReactiveFormsModule } from "@angular/forms";
 
 import { CoreModule, MusiciansService } from "../core/core.module";
 import { SharedModule } from "../shared/shared.module";
+
+import { MusicianFormComponent } from "./musician-form/musician-form.component";
 
 import { MusicianPageComponent } from "./musician-page/musician-page.component";
 export { MusicianPageComponent } from "./musician-page/musician-page.component";
@@ -15,12 +18,20 @@ import { MusicianDeletePageComponent } from "./musician-delete-page/musician-del
 export { MusicianDeletePageComponent } from "./musician-delete-page/musician-delete-page.component";
 
 @NgModule({
-  imports: [CommonModule, CoreModule, SharedModule, RouterModule],
+  imports: [
+    CommonModule,
+    CoreModule,
+    SharedModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   declarations: [
     MusicianPageComponent,
     MusicianAddPageComponent,
     MusicianEditPageComponent,
     MusicianDeletePageComponent,
+    MusicianFormComponent,
   ],
   exports: [
     MusicianPageComponent,
@@ -28,6 +39,6 @@ export { MusicianDeletePageComponent } from "./musician-delete-page/musician-del
     MusicianEditPageComponent,
     MusicianDeletePageComponent,
   ],
-  providers: [MusiciansService],
+  providers: [MusiciansService, FormBuilder],
 })
 export class MusicianModule {}
