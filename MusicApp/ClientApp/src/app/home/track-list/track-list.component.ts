@@ -1,4 +1,5 @@
 ﻿import { Component, Input } from "@angular/core";
+import { Router } from "@angular/router";
 
 import { Track } from "src/app/core/core.module";
 
@@ -9,11 +10,13 @@ import { Track } from "src/app/core/core.module";
 export class TrackListComponent {
   @Input() tracks: Track[];
 
+  constructor(private router: Router) {}
+
   editTrack(id: number) {
-    console.log("editTrack " + id);
+    this.router.navigate(["/track", id, "edit"]);
   }
 
   deleteTrack(id: number) {
-    console.log("deleteTrack " + id);
+    this.router.navigate(["/track", id, "delete"]);
   }
 }

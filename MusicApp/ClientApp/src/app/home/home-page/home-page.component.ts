@@ -7,10 +7,10 @@ import {
 } from "../../core/core.module";
 
 @Component({
-  selector: "home",
-  templateUrl: "./home.component.html",
+  selector: "home-page",
+  templateUrl: "./home-page.component.html",
 })
-export class HomeComponent implements OnInit {
+export class HomePageComponent implements OnInit {
   library: Musician[];
   tracks: Track[];
 

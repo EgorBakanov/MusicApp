@@ -1,24 +1,26 @@
 ﻿import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { Routes, RouterModule } from "@angular/router";
+import { RouterModule, Router } from "@angular/router";
 
-import { CoreModule } from "./core/core.module";
-import { HomeModule, HomeComponent } from "./home/home.module";
+import { AppRoutingModule } from "./app-routing.module";
+import { HomeModule } from "./home/home.module";
+import { MusicianModule } from "./musician/musician.module";
+import { AlbumModule } from "./album/album.module";
+import { TrackModule } from "./track/track.module";
 import { SharedModule } from "./shared/shared.module";
-import { AppComponent } from "./app.component";
 
-const appRoutes: Routes = [
-  { path: "", component: HomeComponent },
-  { path: "**", redirectTo: "/" },
-];
+import { AppComponent } from "./app.component";
 
 @NgModule({
   imports: [
-    CoreModule,
     BrowserModule,
-    HomeModule,
+    AppRoutingModule,
     SharedModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule,
+    HomeModule,
+    MusicianModule,
+    AlbumModule,
+    TrackModule,
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],

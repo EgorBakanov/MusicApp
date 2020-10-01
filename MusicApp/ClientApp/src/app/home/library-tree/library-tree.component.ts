@@ -1,4 +1,5 @@
 ﻿import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Router } from "@angular/router";
 import { Musician } from "src/app/core/core.module";
 
 @Component({
@@ -16,37 +17,41 @@ export class LibraryTreeComponent {
   currentAlbum?: number;
   currentMusician?: number;
 
+  constructor(private router: Router) {}
+
   addMusician() {
-    console.log("addMusician");
+    this.router.navigate(["/musician", "add"]);
   }
 
   editMusician(id: number) {
-    console.log("editMusician " + id);
+    this.router.navigate(["/musician", id, "edit"]);
   }
 
   deleteMusician(id: number) {
-    console.log("deleteMusician " + id);
+    this.router.navigate(["/musician", id, "delete"]);
   }
 
   addAlbum(musician: number) {
-    console.log("addAlbum " + musician);
+    this.router.navigate(["/album", "add"], {
+      queryParams: { musician: musician },
+    });
   }
 
   editAlbum(id: number) {
-    console.log("editAlbum " + id);
+    this.router.navigate(["/album", id, "edit"]);
   }
 
   deleteAlbum(id: number) {
-    console.log("deleteAlbum " + id);
+    this.router.navigate(["/album", id, "delete"]);
   }
 
   addTrack(album: number) {
-    console.log("addTrack " + album);
+    this.router.navigate(["/track", "add"], {
+      queryParams: { album: album },
+    });
   }
 
   selectMusician(musician: number) {
-    console.log("selectMusician " + musician);
-
     if (this.currentMusician == musician) {
       this.currentAlbum = null;
       this.currentMusician = null;
@@ -57,8 +62,6 @@ export class LibraryTreeComponent {
   }
 
   selectAlbum(album: number) {
-    console.log("selectAlbum " + album);
-
     if (this.currentAlbum == album) {
       this.currentAlbum = null;
     } else {
