@@ -17,11 +17,11 @@ export class MusicianFormComponent {
     this.form = this.buildForm(builder);
 
     this.form.statusChanges.subscribe((value) => {
-        this.statusChanged.emit(value==="VALID");
-      });
+      this.statusChanged.emit(value === "VALID");
+    });
   }
 
-  buildForm(builder: FormBuilder) : FormGroup {
+  buildForm(builder: FormBuilder): FormGroup {
     return builder.group({
       name: ["", [Validators.required, Validators.maxLength(50)]],
       age: [0, [Validators.required, Validators.min(0), Validators.max(120)]],
