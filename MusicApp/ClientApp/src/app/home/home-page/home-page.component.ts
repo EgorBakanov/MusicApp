@@ -13,6 +13,7 @@ import {
 export class HomePageComponent implements OnInit {
   library: Musician[];
   tracks: Track[];
+  selectedTrack: Track;
 
   constructor(private ms: MusiciansService, private ts: TracksService) {}
 
@@ -30,10 +31,11 @@ export class HomePageComponent implements OnInit {
   loadTracks(musician?: number, album?: number) {
     this.ts.getAll(musician, album).subscribe((t) => {
       this.tracks = t;
+      this.selectedTrack = t[0];
     });
   }
 
-  onSelectionChanged(selection: { musician?: number; album?: number }) {
+  onLibrarySelectionChanged(selection: { musician?: number; album?: number }) {
     this.loadTracks(selection.musician, selection.album);
   }
 }

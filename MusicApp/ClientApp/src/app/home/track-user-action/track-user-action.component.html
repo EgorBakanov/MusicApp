@@ -1,0 +1,22 @@
+﻿<div *ngIf="track != null" class="mb-3 card">
+  <div class="row m-2">
+    <div class="col-1">
+      <input type="checkbox"/>
+    </div>
+    <div class="col-8 text-truncate">
+      {{ track.name }}
+    </div>
+    <div class="col-3 float-right">
+      <rating-button [rating]="track.rating"></rating-button>
+      <button
+        class="btn btn-link"
+        (click)="track.isFavorite = !track.isFavorite"
+      >
+        <i
+          class="fa-star fa-lg"
+          [ngClass]="{ 'fas text-primary': track.isFavorite, 'far text-secondary': !track.isFavorite }"
+        ></i>
+      </button>
+    </div>
+  </div>
+</div>
