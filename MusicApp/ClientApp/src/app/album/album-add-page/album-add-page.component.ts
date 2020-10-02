@@ -32,7 +32,7 @@ export class AlbumAddPageComponent implements OnDestroy {
     );
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.paramsSub.unsubscribe();
   }
 

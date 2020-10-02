@@ -23,7 +23,7 @@ export class AlbumEditPageComponent implements OnDestroy {
     );
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.paramsSub.unsubscribe();
   }
 

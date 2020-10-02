@@ -28,7 +28,7 @@ export class TrackFormComponent {
         "00:00",
         [
           Validators.required,
-          Validators.pattern("^\d{1,2}\:\d{1,2}$"),
+          Validators.pattern("^\\d{1,2}\\:\\d{1,2}$"),
           Validators.minLength(3),
           Validators.maxLength(5),
         ],
