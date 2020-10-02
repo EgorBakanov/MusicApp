@@ -1,1 +1,29 @@
-﻿delete musician...
+﻿<h2>Delete Musician?</h2>
+<div class="p-4" *ngIf="musician != null">
+  <div>
+      <info-row
+      [label]="'Name'"
+      [data]="musician.name"
+      ></info-row>
+      <info-row
+      [label]="'Age'"
+      [data]="musician.age"
+      ></info-row>
+      <info-row
+      [label]="'Genre'"
+      [data]="musician.genre"
+      ></info-row>
+      <info-row
+      [label]="'Career start year'"
+      [data]="musician.careerStartYear"
+      ></info-row>
+  </div>
+  <button
+    (click)="submit()"
+    class="btn btn-primary btn-lg m-2"
+    type="submit"
+  >
+    Submit
+  </button>
+  <a [routerLink]="['/home']" class="btn btn-outline-secondary btn-lg m-2">Go back</a>
+</div>

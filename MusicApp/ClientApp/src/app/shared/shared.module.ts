@@ -6,6 +6,7 @@ import { AddButtonComponent } from "./add-button/add-button.component";
 import { EditDeleteButtonComponent } from "./edit-delete-button/edit-delete-button.component";
 import { AddEditDeleteButtonComponent } from "./add-edit-delete-button/add-edit-delete-button.component";
 import { ClickStopPropagation } from "./click-stop-propagation/click-stop-propagation.directive";
+import { InfoRowComponent } from "./info-row/info-row.component";
 
 import { NotFoundPageComponent } from "./not-found-page/not-found-page.component";
 export { NotFoundPageComponent } from "./not-found-page/not-found-page.component";
@@ -19,6 +20,7 @@ export { NotFoundPageComponent } from "./not-found-page/not-found-page.component
     AddEditDeleteButtonComponent,
     ClickStopPropagation,
     NotFoundPageComponent,
+    InfoRowComponent,
   ],
   exports: [
     HeaderComponent,
@@ -27,6 +29,7 @@ export { NotFoundPageComponent } from "./not-found-page/not-found-page.component
     AddEditDeleteButtonComponent,
     ClickStopPropagation,
     NotFoundPageComponent,
+    InfoRowComponent,
   ],
 })
 export class SharedModule {}
