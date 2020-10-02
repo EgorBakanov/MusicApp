@@ -1,5 +1,6 @@
-﻿import { Component } from "@angular/core";
+﻿import { Component, OnDestroy } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { Subscription } from "rxjs";
 
 import { MusicianForm, MusiciansService } from "../../core/core.module";
 
@@ -7,16 +8,24 @@ import { MusicianForm, MusiciansService } from "../../core/core.module";
   selector: "musician-edit-page",
   templateUrl: "./musician-edit-page.component.html",
 })
-export class MusicianEditPageComponent {
+export class MusicianEditPageComponent implements OnDestroy {
   musician: MusicianForm;
   formIsValid: boolean;
+
+  paramsSub: Subscription;
 
   constructor(
     private ms: MusiciansService,
     private router: Router,
     route: ActivatedRoute
   ) {
-    route.params.subscribe((param) => this.fetchData(param["id"]));
+    this.paramsSub = route.params.subscribe((param) =>
+      this.fetchData(param["id"])
+    );
+  }
+
+  ngOnDestroy() {
+    this.paramsSub.unsubscribe();
   }
 
   fetchData(id: number) {

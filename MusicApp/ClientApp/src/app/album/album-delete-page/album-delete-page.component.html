@@ -1,1 +1,21 @@
-﻿delete album...
+﻿<h2>Delete Album?</h2>
+<div class="p-4" *ngIf="album != null">
+  <div>
+      <info-row
+      [label]="'Name'"
+      [data]="album.name"
+      ></info-row>
+      <info-row
+      [label]="'Release year'"
+      [data]="album.releaseYear"
+      ></info-row>
+  </div>
+  <button
+    (click)="submit()"
+    class="btn btn-primary btn-lg m-2"
+    type="submit"
+  >
+    Submit
+  </button>
+  <a [routerLink]="['/home']" class="btn btn-outline-secondary btn-lg m-2">Go back</a>
+</div>
