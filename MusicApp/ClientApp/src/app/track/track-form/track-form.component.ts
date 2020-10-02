@@ -1,14 +1,14 @@
 ﻿import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
-import { MusicianForm } from "../../core/core.module";
+import { TrackForm } from "../../core/core.module";
 
 @Component({
-  selector: "musician-form",
-  templateUrl: "./musician-form.component.html",
+  selector: "track-form",
+  templateUrl: "./track-form.component.html",
 })
-export class MusicianFormComponent {
-  @Input() musician: MusicianForm;
+export class TrackFormComponent {
+  @Input() track: TrackForm;
   @Output() statusChanged = new EventEmitter<boolean>();
 
   form: FormGroup;
@@ -24,11 +24,14 @@ export class MusicianFormComponent {
   buildForm(builder: FormBuilder): FormGroup {
     return builder.group({
       name: ["", [Validators.required, Validators.maxLength(50)]],
-      age: [0, [Validators.required, Validators.min(0), Validators.max(120)]],
-      genre: ["", [Validators.maxLength(15)]],
-      careerStartYear: [
-        2010,
-        [Validators.required, Validators.min(1900), Validators.max(2100)],
+      duration: [
+        "00:00",
+        [
+          Validators.required,
+          Validators.pattern("^\d{1,2}\:\d{1,2}$"),
+          Validators.minLength(3),
+          Validators.maxLength(5),
+        ],
       ],
     });
   }

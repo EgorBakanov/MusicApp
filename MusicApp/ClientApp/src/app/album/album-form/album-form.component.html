@@ -1,0 +1,20 @@
+﻿<form [formGroup]="form">
+    <div class="form-group">
+        <label>Name</label>
+        <input class="form-control" name="name" formControlName="name" [(ngModel)]="album.name" />
+         
+        <div class="alert alert-danger"
+            *ngIf="form.controls['name'].invalid && form.controls['name'].touched">
+            Wrong name!
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Career Start Year</label>
+        <input type="number" class="form-control" name="releaseYear" formControlName="releaseYear" [(ngModel)]="album.releaseYear" />
+         
+        <div class="alert alert-danger"
+            *ngIf="form.controls['releaseYear'].invalid && form.controls['releaseYear'].touched">
+            Wrong release year!
+        </div>
+    </div>
+</form>

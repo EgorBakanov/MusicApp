@@ -8,7 +8,7 @@ namespace MusicApp.Models
         public int Id { get; set; }
         [Required, MaxLength(50)]
         public string Name { get; set; }
-        [Range(1950, 2100)]
+        [Range(1900, 2100)]
         public int ReleaseYear { get; set; }
 
         public int MusicianId { get; set; }
