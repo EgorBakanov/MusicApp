@@ -12,6 +12,13 @@ namespace MusicApp.Controllers
     [ApiController]
     public class TracksController : Controller
     {
+        public class UserActionParams
+        {
+            public int? Rating { get; set; }
+            public bool? IsFavorite { get; set; }
+            public bool? IsListened { get; set; }
+        }
+
         private readonly ApplicationContext db;
 
         public TracksController(ApplicationContext db)
@@ -59,6 +66,26 @@ namespace MusicApp.Controllers
                 return Ok(new TrackFormViewModel(track));
             }
             return BadRequest(ModelState);
+        }
+
+        [HttpPost("user-action/{id}")]
+        public ActionResult<TrackViewModel> UserAction([FromRoute] int id, [FromBody] UserActionParams actionParams)
+        {
+            if (!actionParams.Rating.HasValue && !actionParams.IsFavorite.HasValue && !actionParams.IsListened.HasValue)
+                return BadRequest(actionParams);
+
+            var track = db.Tracks.FirstOrDefault(t => t.Id == id);
+            if (track == null)
+                return NotFound();
+
+            if (actionParams.Rating.HasValue) track.Rating = actionParams.Rating.Value;
+            if (actionParams.IsFavorite.HasValue) track.IsFavorite = actionParams.IsFavorite.Value;
+            if (actionParams.IsListened.HasValue) track.IsListened = actionParams.IsListened.Value;
+
+            db.Update(track);
+            db.SaveChanges();
+
+            return Ok(new TrackViewModel(track));
         }
 
         [HttpPut]

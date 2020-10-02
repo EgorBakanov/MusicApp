@@ -21,6 +21,13 @@ export class TracksService {
     return this.http.get<Track[]>(url);
   }
 
+  userAction(
+    id: number,
+    action: { rating?: number; isFavorite?: boolean; isListened?: boolean }
+  ): Observable<Track> {
+    return this.http.post<Track>(`${this.url}/user-action/${id}`, action);
+  }
+
   get(id: number): Observable<TrackForm> {
     return this.http.get<TrackForm>(this.url + "/" + id);
   }
