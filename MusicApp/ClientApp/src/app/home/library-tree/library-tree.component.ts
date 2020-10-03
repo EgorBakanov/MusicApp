@@ -52,8 +52,8 @@ export class LibraryTreeComponent {
   }
 
   selectMusician(musician: number) {
+    this.currentAlbum = null;
     if (this.currentMusician == musician) {
-      this.currentAlbum = null;
       this.currentMusician = null;
     } else {
       this.currentMusician = musician;

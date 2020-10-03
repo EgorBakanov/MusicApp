@@ -12,4 +12,37 @@ export class TrackUserActionComponent {
     id: number;
     action: { rating?: number; isFavorite?: boolean; isListened?: boolean };
   }>();
+
+  onRating(rating: number) {
+    this.track.rating = rating;
+
+    var action = {
+      id: this.track.id,
+      action: { rating: this.track.rating },
+    };
+
+    this.performAction.emit(action);
+  }
+
+  onFavorite() {
+    this.track.isFavorite = !this.track.isFavorite;
+
+    var action = {
+      id: this.track.id,
+      action: { isFavorite: this.track.isFavorite },
+    };
+
+    this.performAction.emit(action);
+  }
+
+  onListened() {
+    this.track.isListened = !this.track.isListened;
+
+    var action = {
+      id: this.track.id,
+      action: { isListened: this.track.isListened },
+    };
+
+    this.performAction.emit(action);
+  }
 }

@@ -2,7 +2,12 @@
   <div class="row m-2">
     <div class="col-1">
       <div class="h-100 py-2">
-        <input type="checkbox" class="d-inline-block align-middle" />
+        <input
+          type="checkbox"
+          class="d-inline-block align-middle"
+          [checked]="track.isListened"
+          (change)="onListened()"
+        />
       </div>
     </div>
     <div class="col-auto mr-auto">
@@ -11,14 +16,14 @@
       </div>
     </div>
     <div class="col-auto align-middle">
-      <rating-button [rating]="track.rating"></rating-button>
+      <rating-button
+        [rating]="track.rating"
+        (ratingChanged)="onRating($event)"
+      ></rating-button>
     </div>
     <div class="col-auto">
       <div class="h-100 py-2">
-        <button
-          class="btn btn-link"
-          (click)="track.isFavorite = !track.isFavorite"
-        >
+        <button class="btn btn-link" (click)="onFavorite()">
           <i
             class="fa-star fa-lg"
             [ngClass]="{

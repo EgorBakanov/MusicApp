@@ -35,6 +35,20 @@ export class HomePageComponent implements OnInit {
     });
   }
 
+  onTrackUserAction(trackUserAction: {
+    id: number;
+    action: { rating?: number; isFavorite?: boolean; isListened?: boolean };
+  }) {
+    this.ts.userAction(trackUserAction.id, trackUserAction.action).subscribe(
+      (t) => {
+        console.log(t);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
   onLibrarySelectionChanged(selection: { musician?: number; album?: number }) {
     this.loadTracks(selection.musician, selection.album);
   }
