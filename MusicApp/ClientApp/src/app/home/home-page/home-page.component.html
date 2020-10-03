@@ -10,6 +10,9 @@
     ></library-tree>
   </div>
   <div class="col-5 offset-sm-1">
-    <track-list [tracks]="tracks"></track-list>
+    <track-list
+      [tracks]="tracks"
+      (onSelectionChanged)="onTrackSelectionChanged($event)"
+    ></track-list>
   </div>
 </div>

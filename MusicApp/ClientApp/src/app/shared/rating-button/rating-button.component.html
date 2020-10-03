@@ -2,12 +2,12 @@
   <button class="btn btn-link" (click)="like()">
     <i
       class="fas fa-thumbs-up fa-lg"
-      [ngClass]="{ 'text-dark': isLike(), 'text-secondary': !isLike() }"
+      [ngClass]="{ 'text-primary': isLike(), 'text-secondary': !isLike() }"
     ></i></button
   ><button class="btn btn-link" (click)="dislike()">
     <i
       class="fas fa-thumbs-up fa-rotate-180 fa-lg"
-      [ngClass]="{ 'text-dark': isDislike(), 'text-secondary': !isDislike() }"
+      [ngClass]="{ 'text-danger': isDislike(), 'text-secondary': !isDislike() }"
     ></i>
   </button>
 </div>

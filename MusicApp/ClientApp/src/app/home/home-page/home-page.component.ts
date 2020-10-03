@@ -31,7 +31,6 @@ export class HomePageComponent implements OnInit {
   loadTracks(musician?: number, album?: number) {
     this.ts.getAll(musician, album).subscribe((t) => {
       this.tracks = t;
-      this.selectedTrack = t[0];
     });
   }
 
@@ -51,5 +50,9 @@ export class HomePageComponent implements OnInit {
 
   onLibrarySelectionChanged(selection: { musician?: number; album?: number }) {
     this.loadTracks(selection.musician, selection.album);
+  }
+
+  onTrackSelectionChanged(selection: Track) {
+    this.selectedTrack = selection;
   }
 }

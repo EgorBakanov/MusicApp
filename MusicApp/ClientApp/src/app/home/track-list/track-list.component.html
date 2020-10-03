@@ -2,9 +2,11 @@
   <h3 class="ml-2">Tracks</h3>
 
   <div class="list-group mt-2">
-    <div
+    <button
       *ngFor="let t of tracks"
       class="list-group-item list-group-item-action py-1"
+      [ngClass]="{ active: currentTrack.id == t.id }"
+      (click)="select(t)"
     >
       <div class="row">
         <div
@@ -14,12 +16,13 @@
         </div>
         <div class="col-4 col-sd-2 col-md-3 col-lg-2 pr-0">
           <edit-delete-button
+            click-stop-propagation
             class="float-right"
             (onEditClick)="editTrack(t.id)"
             (onDeleteClick)="deleteTrack(t.id)"
           ></edit-delete-button>
         </div>
       </div>
-    </div>
+    </button>
   </div>
 </div>
