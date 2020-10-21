@@ -40,37 +40,37 @@ namespace MusicApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult<MusicianFormViewModel> Post(Musician musician)
+        public async Task<ActionResult<MusicianFormViewModel>> Post(Musician musician)
         {
             if (ModelState.IsValid)
             {
-                db.Musicians.Add(musician);
-                db.SaveChanges();
+                await db.Musicians.AddAsync(musician);
+                await db.SaveChangesAsync();
                 return Ok(new MusicianFormViewModel(musician));
             }
             return BadRequest(ModelState);
         }
 
         [HttpPut]
-        public ActionResult<MusicianFormViewModel> Put(Musician musician)
+        public async Task<ActionResult<MusicianFormViewModel>> Put(Musician musician)
         {
             if (ModelState.IsValid)
             {
                 db.Update(musician);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return Ok(new MusicianFormViewModel(musician));
             }
             return BadRequest(ModelState);
         }
 
         [HttpDelete("{id}")]
-        public ActionResult<MusicianFormViewModel> Delete(int id)
+        public async Task<ActionResult<MusicianFormViewModel>> Delete(int id)
         {
-            var musician = db.Musicians.FirstOrDefault(m => m.Id == id);
+            var musician = await db.Musicians.FirstOrDefaultAsync(m => m.Id == id);
             if (musician != null)
             {
                 db.Musicians.Remove(musician);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
             return Ok(new MusicianFormViewModel(musician));
         }

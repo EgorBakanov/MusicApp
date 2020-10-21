@@ -57,24 +57,24 @@ namespace MusicApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult<TrackFormViewModel> Post(Track track)
+        public async Task<ActionResult<TrackFormViewModel>> Post(Track track)
         {
             if (ModelState.IsValid)
             {
-                db.Tracks.Add(track);
-                db.SaveChanges();
+                await db.Tracks.AddAsync(track);
+                await db.SaveChangesAsync();
                 return Ok(new TrackFormViewModel(track));
             }
             return BadRequest(ModelState);
         }
 
         [HttpPost("user-action/{id}")]
-        public ActionResult<TrackViewModel> UserAction([FromRoute] int id, [FromBody] UserActionParams actionParams)
+        public async Task<ActionResult<TrackViewModel>> UserAction([FromRoute] int id, [FromBody] UserActionParams actionParams)
         {
             if (!actionParams.Rating.HasValue && !actionParams.IsFavorite.HasValue && !actionParams.IsListened.HasValue)
                 return BadRequest(actionParams);
 
-            var track = db.Tracks.FirstOrDefault(t => t.Id == id);
+            var track = await db.Tracks.FirstOrDefaultAsync(t => t.Id == id);
             if (track == null)
                 return NotFound();
 
@@ -83,31 +83,31 @@ namespace MusicApp.Controllers
             if (actionParams.IsListened.HasValue) track.IsListened = actionParams.IsListened.Value;
 
             db.Update(track);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
 
             return Ok(new TrackViewModel(track));
         }
 
         [HttpPut]
-        public ActionResult<TrackFormViewModel> Put(Track track)
+        public async Task<ActionResult<TrackFormViewModel>> Put(Track track)
         {
             if (ModelState.IsValid)
             {
                 db.Update(track);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return Ok(new TrackFormViewModel(track));
             }
             return BadRequest(ModelState);
         }
 
         [HttpDelete("{id}")]
-        public ActionResult<TrackFormViewModel> Delete(int id)
+        public async Task<ActionResult<TrackFormViewModel>> Delete(int id)
         {
-            var track = db.Tracks.FirstOrDefault(x => x.Id == id);
+            var track = await db.Tracks.FirstOrDefaultAsync(x => x.Id == id);
             if (track != null)
             {
                 db.Tracks.Remove(track);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
             return Ok(new TrackFormViewModel(track));
         }

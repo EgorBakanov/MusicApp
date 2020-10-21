@@ -28,37 +28,37 @@ namespace MusicApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult<AlbumFormViewModel> Post(Album album)
+        public async Task<ActionResult<AlbumFormViewModel>> Post(Album album)
         {
             if (ModelState.IsValid)
             {
-                db.Albums.Add(album);
-                db.SaveChanges();
+                await db.Albums.AddAsync(album);
+                await db.SaveChangesAsync();
                 return Ok(new AlbumFormViewModel(album));
             }
             return BadRequest(ModelState);
         }
 
         [HttpPut]
-        public ActionResult<AlbumFormViewModel> Put(Album album)
+        public async Task<ActionResult<AlbumFormViewModel>> Put(Album album)
         {
             if (ModelState.IsValid)
             {
                 db.Update(album);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return Ok(new AlbumFormViewModel(album));
             }
             return BadRequest(ModelState);
         }
 
         [HttpDelete("{id}")]
-        public ActionResult<AlbumFormViewModel> Delete(int id)
+        public async Task<ActionResult<AlbumFormViewModel>> Delete(int id)
         {
-            var album = db.Albums.FirstOrDefault(x => x.Id == id);
+            var album = await db.Albums.FirstOrDefaultAsync(x => x.Id == id);
             if (album != null)
             {
                 db.Albums.Remove(album);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
             return Ok(new AlbumFormViewModel(album));
         }
